@@ -11,14 +11,12 @@ export type User = {
     blocked: boolean;
     role: Role;
     codigo: string;
-    conferencias: Catalog;
     escuela: string;
-    inscripciones: Inscripcion[];
+    conferencias: Conferencia[];
 };
-export type Inscripcion = {
-    nombre: string;
-    apellido: string;
-    codigo: string;
-    carrera: string;
-    asistencia: string;
+export type Conferencia = {
+    id: string;
+    tema_conferencia: string;
+    expositor: string;
+    descripcion: string;
 };

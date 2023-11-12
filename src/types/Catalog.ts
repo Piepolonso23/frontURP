@@ -13,7 +13,6 @@ export type Catalog = {
   dirigido: string;
   disponible: boolean;
   solicitado_por:string; 
-  miconf: boolean;
   inscripciones: Inscripcion[];
   repositorio: string;
   salons: any;

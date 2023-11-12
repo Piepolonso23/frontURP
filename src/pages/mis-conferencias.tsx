@@ -8,6 +8,7 @@ import { User } from "../types/User";
 import { Catalog } from "../types/Catalog";
 import ModalInscribir from "../components/BotonModal";
 import { useState } from "react";
+import ProximasConfes from "../components/ProximasConfes";
 
 function formatearFecha(fechaOriginal) {
   const fecha = new Date(fechaOriginal);
@@ -45,21 +46,6 @@ const VerCatalogo = ({ catalog }: { catalog: Catalog }) => {
   const proximasConferencias = catalogs.filter((catalog) => (!catalog.miconf) && catalog.disponible);
   const cmt = encontrarConferenciaMasTemprana(proximasConferencias);
   const fechaFormateada = formatearFecha(Date.parse(cmt?.fecha));
-  const devolverCadena = () => {
-    if (proximasConferencias.length === 0) {
-      const cadena2 = "No hay conferencias pendientes por ahora.";
-      return cadena2;
-    } else {
-      const cadena = (
-        <>
-          {cmt?.tema_conferencia}
-          <br /> {fechaFormateada}
-          <br />
-        </>
-      );
-      return cadena;
-    }
-  };
   return (
     <ResponsivePage>
       <div className="container mt-3 mb-4 header-mis-conferencias">
@@ -69,42 +55,7 @@ const VerCatalogo = ({ catalog }: { catalog: Catalog }) => {
 
       <div className="container contenido-mis-conferencias">
         <TotalConferencia />
-        <div className="seccion-mis-conferencias">
-          <img src="\icon-proxima-conferencia.png" alt="conferencias" />
-          <h2>Próxima Conferencia</h2>
-          <div>
-            {proximasConferencias.length === 0 ? (
-              <div>
-                <h6 className="devolverCadena">
-                  No hay conferencias pendientes por ahora.
-                </h6>
-              </div>
-            ) : (
-              <div>
-                <h6 className="devolverCadena">
-                  {cmt?.tema_conferencia}
-                  <br />
-                  {fechaFormateada}
-                </h6>
-                <a
-                  style={{ color: "#42B247", cursor: "pointer", display: "flex", justifyContent: "center"}}
-                  onClick={() => {
-                    cambiarEstadoModal(!estadoModal);
-                    setCatalogElement(cmt);
-                  }}
-                >
-                  Inscribirse
-                </a>
-                <ModalInscribir
-                  estado={estadoModal}
-                  cambiarEstado={cambiarEstadoModal}
-                  catalogo={cmt}
-                  setCatalogo={setCatalogElement}
-                />
-              </div>
-            )}
-          </div>
-        </div>
+        <ProximasConfes/>
         <div className="seccion-mis-conferencias">
           <img src="\icon-convalida-conferencia.png" alt="conferencias" />
           <h2>Convalida tus conferencia</h2>

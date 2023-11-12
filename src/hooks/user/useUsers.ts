@@ -40,7 +40,8 @@ export const useUsers = () => {
             ...(data.password && { password: data.password }),
             rol: {
                 id: data.role.id
-            }
+            },
+            conferencias: data.conferencias
         }).catch(response => {
             return response.response;
         });

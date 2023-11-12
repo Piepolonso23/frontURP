@@ -29,7 +29,7 @@ export const CatalogCard = ({ catalog }: { catalog: Catalog }) => {
       <div className="cont-img">
         <Card.Img
           variant="top"
-          src="http://localhost:1338/uploads/SERVICIO_DIGITAL_MARKETING_CONSULTING_127a33d433.jpg"
+          src="http://localhost:1338/uploads/mobile-app-design-fundamentals-the-difference-between-UI-and-UX.webp"
         />
         <p className="expositor-card card-fecha">
           <img src="\calendario-icon.svg" alt="fecha" />
