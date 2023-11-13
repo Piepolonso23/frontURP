@@ -36,20 +36,10 @@ const ProximasConfes = () => {
     return conferenciaMasTemprana;
   }
 
-  const nuevoAlumno: Inscripcion = {
-    nombre: user?.nombre + "",
-    apellido: user?.apellido + "",
-    codigo: user?.codigo + "",
-    carrera: user?.escuela + "",
-    asistencia: "No"
-  };
-//   catalogs.filter((catalog) => !catalog.inscripciones.includes(nuevoAlumno));
-
-let proximasConferencias: Catalog[] = [];
-
-  let flag = false;
+  let proximasConferencias: Catalog[] = [];
 
   catalogs.forEach(catalog => {
+    let flag = false;
     catalog.inscripciones.forEach(inscripcion => {
         if(inscripcion.codigo == user?.codigo){
             flag = true;
@@ -59,7 +49,6 @@ let proximasConferencias: Catalog[] = [];
         proximasConferencias.push(catalog);
     }
   });
-  console.log(proximasConferencias);
 
   const [estadoModal, cambiarEstadoModal] = useState(false);
   const [catalogElement, setCatalogElement] = useState<Catalog>();

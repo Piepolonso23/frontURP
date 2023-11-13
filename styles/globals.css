@@ -893,6 +893,7 @@ button {
 
 .card-body-inscrito {
     padding-bottom: 0px !important;
+    border-radius: 15px;
 }
 
 .seccion-titulo-alumno {
@@ -1119,3 +1120,34 @@ textarea:focus {
 .envio-solicitud-form button:hover {
     background-color: #3e8e41;
 }
+
+.senalizacion{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.senalizacion-seccion{
+    display: flex;
+}
+
+.circulo-asistio{
+    height: 20px;
+    width: 20px;
+    background-color: #B4E5A4;
+    border-radius: 50%;
+}
+
+.circulo-no-asistio{
+    height: 20px;
+    width: 20px;
+    background-color: #E56E5A;
+    border-radius: 50%;
+}
+
+.circulo-pendiente{
+    height: 20px;
+    width: 20px;
+    background-color: #EDEDED;
+    border-radius: 50%;
+}
+
