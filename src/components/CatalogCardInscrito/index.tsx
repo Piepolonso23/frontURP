@@ -4,16 +4,19 @@ import { User } from "../../types/User";
 import ModalInscribir from "../BotonModal";
 import ModalMaterial from "../BotonMaterial";
 import { useResponsivePageContext } from "../ResponsivePage/context";
+import axios from "axios";
+import { Convalida } from "../../types/Convalida";
+import { useEffect, useState } from "react";
 
 export const CatalogCardInscrito = ({ catalog }: { catalog: Catalog }) => {
   const { user } = useResponsivePageContext();
+  const [fotoUrl, setFotoUrl] = useState("");
 
   let color = '';
 
   const fecha = new Date();
-  console.log(fecha);
   const fechaConferencia = new Date(catalog.fecha);
-  console.log(fechaConferencia);
+  fechaConferencia.setDate(fechaConferencia.getDate() + 1);
 
   catalog.inscripciones.forEach(inscripcion => {
     if(inscripcion.codigo == user?.codigo){
@@ -29,7 +32,22 @@ export const CatalogCardInscrito = ({ catalog }: { catalog: Catalog }) => {
           }
         }
     }
-})
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const apiFoto = await axios.get(`http://localhost:1338/api/catologos/${catalog.id}?populate=foto`);
+        const url = apiFoto.data.data.attributes.foto.data.attributes.url;
+        setFotoUrl(`http://localhost:1338${url}`);
+      } catch (error) {
+        console.error("Error al obtener la foto:", error);
+      }
+    };
+
+    fetchData();
+  }, [catalog.id]);
+
 
 const character__body = {
   "background-color" : color,
@@ -41,7 +59,7 @@ const character__body = {
     <div className="cont-img">
       <Card.Img
         variant="top"
-        src="http://localhost:1338/uploads/mobile_app_design_fundamentals_the_difference_between_UI_and_UX_9227cad9aa.webp"
+        src={fotoUrl}
       />
     </div>
 
@@ -58,7 +76,7 @@ const character__body = {
 
           <p className="card-inscrito-texto" style={character__body}>
             <img src="\salon-icon-black.svg" alt="salon" />
-            {catalog.salon}
+            {catalog?.salon.data.attributes.nombre}
           </p>
         </div>
         <div className="card-inscrito-seccion-boton" style={character__body}>

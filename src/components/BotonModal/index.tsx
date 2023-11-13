@@ -13,6 +13,7 @@ import { url } from 'inspector';
 
 function formatearFecha(fechaOriginal) {
     const fecha = new Date(fechaOriginal);
+    fecha.setDate(fecha.getDate() + 1);
     const dia = fecha.getDate();
     const mes = fecha.toLocaleDateString('es-ES', { month: 'long' });
     const anio = fecha.getFullYear();
@@ -109,7 +110,7 @@ const ModalInscribir = ({ estado, cambiarEstado, catalogo, setCatalogo}) => {
                     </div>
                     <div className="seccion">
                       <h5>Salón: </h5>
-                      <p>{catalogo.salon === null ? "No establecido" : catalogo.salon}</p>
+                      <p>{catalogo.salon.data.attributes.nombre === null ? "No establecido" : catalogo.salon.data.attributes.nombre}</p>
                     </div>
                     <div className="seccion">
                       <h5>Dirigido a: </h5>

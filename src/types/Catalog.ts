@@ -15,7 +15,7 @@ export type Catalog = {
   solicitado_por:string; 
   inscripciones: Inscripcion[];
   repositorio: string;
-  salons: any;
+  salon: any;
 };
 
 

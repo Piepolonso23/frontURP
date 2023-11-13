@@ -7,6 +7,7 @@ import { Inscripcion } from "../../types/Catalog";
 
 function formatearFecha(fechaOriginal: any) {
   const fecha = new Date(fechaOriginal);
+  fecha.setDate(fecha.getDate() + 1);
   const dia = fecha.getDate();
   const mes = fecha.toLocaleDateString("es-ES", { month: "long" });
   const anio = fecha.getFullYear();
